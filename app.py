@@ -9,10 +9,9 @@ from db import (
 )
 from reportlab.platypus import SimpleDocTemplate, Paragraph
 from reportlab.lib.styles import getSampleStyleSheet
-from streamlit_mic_recorder import mic_recorder
-import speech_recognition as sr
 from PyPDF2 import PdfReader
 
+# ================= ENV =================
 load_dotenv()
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
@@ -103,25 +102,12 @@ if "messages" not in st.session_state:
 mode = st.selectbox("Study Mode", ["Normal", "Beginner", "Exam Revision"])
 subject = st.selectbox("Subject", ["General", "Math", "Science", "Programming"])
 
-# ================= 🎤 VOICE =================
-audio = mic_recorder(start_prompt="🎤 Speak", stop_prompt="Stop")
-user_input = None
-
-if audio:
-    recognizer = sr.Recognizer()
-    with sr.AudioFile(audio["filename"]) as source:
-        audio_data = recognizer.record(source)
-        try:
-            text = recognizer.recognize_google(audio_data)
-            st.success(f"You said: {text}")
-            user_input = text
-        except:
-            st.error("Voice not recognized")
-
-# ================= 💬 TEXT =================
+# ================= 💬 TEXT INPUT =================
 text_input = st.chat_input("Ask your question...")
-if text_input:
-    user_input = text_input
+
+user_input = None
+if text_input and text_input.strip():
+    user_input = text_input.strip()
 
 # ================= 📄 PDF UPLOAD =================
 uploaded_file = st.file_uploader("Upload PDF", type=["pdf"])
@@ -130,7 +116,9 @@ def extract_text(file):
     reader = PdfReader(file)
     text = ""
     for page in reader.pages:
-        text += page.extract_text()
+        page_text = page.extract_text()
+        if page_text:
+            text += page_text
     return text
 
 if uploaded_file:
@@ -160,6 +148,7 @@ def create_pdf(text):
 
 # ================= 🤖 AI =================
 if user_input:
+
     st.session_state.messages.append({"role": "user", "content": user_input})
 
     with st.chat_message("user"):
@@ -183,6 +172,7 @@ if user_input:
     save_data(user_input, output)
 
     create_pdf(output)
+
     with open("notes.pdf", "rb") as f:
         st.download_button("📥 Download Notes", f, file_name="notes.pdf")
 
