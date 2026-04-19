@@ -1,0 +1,13 @@
+streamlit==1.56.0
+groq==1.2.0
+python-dotenv==1.2.2
+requests==2.33.1
+pillow==12.2.0
+
+# PDF feature (if used)
+PyPDF2
+reportlab
+
+# Voice feature (if used)
+SpeechRecognition
+streamlit-mic-recorder
