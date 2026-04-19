@@ -1,7 +1,6 @@
 import streamlit as st
 from groq import Groq
 import os
-from dotenv import load_dotenv
 from prompts import get_study_prompt
 from db import (
     init_db, save_data, get_history, clear_history,
@@ -12,10 +11,11 @@ from reportlab.lib.styles import getSampleStyleSheet
 from PyPDF2 import PdfReader
 
 # ================= ENV =================
-load_dotenv()
-client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+client = Groq(api_key=st.secrets["GROQ_API_KEY"])
 
+# ================= INIT DB =================
 init_db()
+
 st.set_page_config(page_title="AI Study Assistant", layout="wide")
 
 # ================= 🔁 AUTO LOGIN =================
@@ -105,9 +105,7 @@ subject = st.selectbox("Subject", ["General", "Math", "Science", "Programming"])
 # ================= 💬 TEXT INPUT =================
 text_input = st.chat_input("Ask your question...")
 
-user_input = None
-if text_input and text_input.strip():
-    user_input = text_input.strip()
+user_input = text_input.strip() if text_input else None
 
 # ================= 📄 PDF UPLOAD =================
 uploaded_file = st.file_uploader("Upload PDF", type=["pdf"])
