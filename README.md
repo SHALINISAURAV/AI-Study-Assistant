@@ -196,7 +196,7 @@ ai-study-assistant/
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/your-username/ai-study-assistant.git
+git clone https://github.com/SHALINISAURAV/ai-study-assistant.git
 cd ai-study-assistant
 
 # 2. Create virtual environment
@@ -252,11 +252,6 @@ requests
 - [x] 📜 Chat history storage
 - [x] 🌙 Dark mode toggle
 - [x] ⚡ Groq LLM integration
-- [ ] 🔥 Real-time streaming responses
-- [ ] 🧠 RAG-based PDF Q&A (ask questions directly from PDF)
-- [ ] 🎤 Voice input via Whisper API
-- [ ] 📊 User analytics dashboard
-- [ ] 🌍 Multi-language support
 
 ---
 
