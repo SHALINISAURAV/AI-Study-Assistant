@@ -10,7 +10,7 @@
         A S S I S T A N T   🎓            
 ```
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=20&pause=1000&color=22D3EE&center=true&vCenter=true&width=700&lines=Your+Personal+AI+Tutor.+Available+24%2F7.;Chat+%7C+Summarize+%7C+Download+Notes.;3+Study+Modes+for+every+learner.;Built+by+Shalini+Saurav+🚀" alt="Typing SVG" />
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=20&pause=1000&color=22D3EE&center=true&vCenter=true&width=700&lines=lines=AI+Developer+Portfolio.;Projects+%7C+Skills+%7C+Contact.;Built+by+Shalini🚀" alt="Typing SVG" />
 
 <br/>
 
